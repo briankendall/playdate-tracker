@@ -1,0 +1,13 @@
+CMakeCache.txt
+CMakeFiles/**
+build
+.DS_Store
+_untracked
+DerivedData
+__pycache__
+*.dylib
+pdxinfo
+*.pdx
+*.mapb
+*.elf
+.vscode

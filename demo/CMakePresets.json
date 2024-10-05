@@ -1,0 +1,31 @@
+{
+    "version": 3,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 20,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "playdate-emulator",
+            "hidden": false,
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/build/playdate-emulator",
+            "toolchainFile": ""
+        },
+        {
+            "name": "playdate",
+            "hidden": false,
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/build/playdate",
+            "toolchainFile": "$env{PLAYDATE_SDK_PATH}/C_API/buildsupport/arm.cmake"
+        },
+        {
+            "name": "playdate-xcode",
+            "hidden": false,
+            "generator": "Xcode",
+            "binaryDir": "${sourceDir}/build/playdate-xcode",
+            "toolchainFile": ""
+        }
+    ]
+}
