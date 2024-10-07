@@ -648,7 +648,6 @@ static bool calculateSignalStep(SignalDataHeader *header, int ioSamples, uint32_
     BaseSignalStepData *next = (BaseSignalStepData *)((uint8_t *)header + header->nextOffset);
     
     if ((*frameEnd) >= current->stepEnd && header->processedStepId != header->currentStepId) {
-        //printLog("**** currentStep processed %d - %d -> %d", header->currentStepId, current->stepStart, current->stepEnd);
         header->processedStepId = header->currentStepId;
     }
     
@@ -664,7 +663,6 @@ static bool calculateSignalStep(SignalDataHeader *header, int ioSamples, uint32_
     //  |   cur?   |   next   | 
     //                           ^  ^  <-- error case
     if (header->currentStepId != header->nextStepId && (*frameEnd) >= next->stepStart) {
-        //printLog("**** nextStep begins! %d - %d -> %d", header->nextStepId, next->stepStart, next->stepEnd);
         header->currentStepId = header->nextStepId;
         memcpy(current, next, header->stepDataSize);
         
@@ -2098,7 +2096,7 @@ static void processNextStep(TrackerMusic *music, uint32_t currentTime)
     }
 
     uint8_t patternIndex = music->orders[music->pb.nextOrderIndex];
-    PatternCell *pattern = patternAtIndex(music, patternIndex);//music->patterns[patternIndex];
+    PatternCell *pattern = patternAtIndex(music, patternIndex);
     
     // Important to process control effects first in case nextNextStepSample changes:
     for(uint8_t channel = 0; channel < music->channelCount; ++channel) {
@@ -2106,7 +2104,7 @@ static void processNextStep(TrackerMusic *music, uint32_t currentTime)
             continue;
         }
         
-        PatternCell *cell = patternCell(music, pattern, music->pb.nextRow, channel);//s3m_get_cell(pattern, channel, music->pb.nextRow);
+        PatternCell *cell = patternCell(music, pattern, music->pb.nextRow, channel);
         
         if ((cell->what & EFFECT_FLAG) != 0) {
             processMusicControlEffect(music, cell);
@@ -2118,7 +2116,7 @@ static void processNextStep(TrackerMusic *music, uint32_t currentTime)
             continue;
         }
         
-        PatternCell *cell = patternCell(music, pattern, music->pb.nextRow, channel);//s3m_get_cell(pattern, channel, music->pb.nextRow);
+        PatternCell *cell = patternCell(music, pattern, music->pb.nextRow, channel);
         
         if ((cell->what & VOLUME_FLAG) != 0) {
             processMusicVolume(music, channel, cell);

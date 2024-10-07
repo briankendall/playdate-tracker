@@ -143,9 +143,10 @@ static void s3mReadPattern(TrackerMusic *music, PatternCell *pattern, uint8_t *d
 {
     uint8_t row = 0;
     uint16_t length = *((uint16_t *)data);
+    uint8_t *end = data + length;
     data += 2;
     
-    while(row < ROWS_PER_PATTERN && data < data + length) {
+    while(row < ROWS_PER_PATTERN && data < end) {
         PatternCell cell = {0};
         cell.what = *(data++);
 
